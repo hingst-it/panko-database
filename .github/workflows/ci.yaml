@@ -1,0 +1,22 @@
+name: Checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jdx/mise-action@v2
+      - name: Format and validate
+        run: |
+          mise exec -- tofu fmt -check
+          mise exec -- tofu init -backend=false -lockfile=readonly -input=false
+          mise exec -- tofu validate
