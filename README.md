@@ -12,7 +12,7 @@ the resource snapshot directly, without a separate field mapping.
 | Input | Source |
 | --- | --- |
 | `var.namespace`, `var.name` | Identity of the `Database` resource. |
-| `var.resource` | Immutable snapshot (`metadata` and `spec`) from `resource.auto.tfvars.json`. |
+| `var.resource` | Immutable snapshot (`metadata` and `spec`) from `resource.auto.tfvars.json`. `metadata.identity`, if present, is the original UID of a restored resource and replaces `uid` for naming; the owner reference keeps the real `uid`. |
 | `PGPASSWORD` | PostgreSQL administrator password from the restricted admin Secret. |
 | `KUBE_HOST`, `KUBE_TOKEN`, `KUBE_CLUSTER_CA_CERT_DATA` | Credentials of the team's `tofu-runner` ServiceAccount. |
 

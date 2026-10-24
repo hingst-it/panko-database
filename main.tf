@@ -50,9 +50,10 @@ provider "postgresql" {
 }
 
 locals {
-  cr       = var.resource
-  spec     = local.cr.spec
-  identity = substr(sha256(local.cr.metadata.uid), 0, 12)
+  cr   = var.resource
+  spec = local.cr.spec
+  # A restored resource gets a new UID; metadata.identity carries the original one so names stay stable.
+  identity = substr(sha256(try(local.cr.metadata.identity, local.cr.metadata.uid)), 0, 12)
   database = "${substr(var.name, 0, 40)}_${local.identity}"
   username = "${substr(local.spec.owner, 0, 40)}_${local.identity}"
   host     = "postgres.infra-backends.svc.cluster.local"
