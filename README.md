@@ -38,3 +38,14 @@ mise exec -- tofu providers lock -platform=linux_amd64 -platform=linux_arm64 \
 A new module version reaches Panko only when its commit SHA is set as
 `MODULE_REVISION` of the hook. Every `Database` is then applied once with the
 new revision.
+
+## Public example module
+
+The default Panko lab fetches this repository over public HTTPS. No deploy key
+or GitHub account is required. See the
+[Panko quickstart](https://github.com/hingst-it/panko/blob/v0.0.1/docs/quickstart.md)
+for a complete local installation.
+
+## License
+
+Apache-2.0. Copyright 2026 Arne-Kristian Hingst. See [LICENSE](LICENSE).
